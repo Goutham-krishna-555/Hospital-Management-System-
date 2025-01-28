@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Breadcrumb -->
+	<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Add Appointment</h3>
+							<form method = "post" action = "{% url 'add_appointment' %}">
+								{%csrf_token%}
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="patient-id">Patient ID</label>
+										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" name="patient_id">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="department">Department</label>
+										<select class="form-control" id="department" name="department">
+											<option>Neurology</option>
+											<option>Orthology</option>
+											<option>Cardiology</option>
+											<option>Gynaecology</option>
+											<option>General</option>
+											<option>Ophthalmology</option>
+											<option>gastroenterology</option>
+											<option>Pediatrician</option>
+											<option>other</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="doctor-name">Doctor Name</label>
+										<input type="text" placeholder="Doctor Name" class="form-control" id="doctor-name" name="doctor_name">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="patient-name">Patient Name</label>
+										<input type="text" placeholder="Patient Name" class="form-control" id="patient-name" name="patient_name">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="appointment-date">Appointment Date</label>
+										<input type="date" placeholder="Appointment Date" class="form-control" id="appointment-date" name="date1">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="time-slot">Time Slot</label>
+										<select class="form-control" id="time-slot" name="time_slot">
+											<option>10AM-11AM</option>
+											<option>11AM-12pm</option>
+											<option>12PM-01PM</option>
+											<option>2PM-3PM</option>
+											<option>3PM-4PM</option>
+											<option>4PM-5PM</option>
+											<option>6PM-7PM</option>
+											<option>7PM-8PM</option>
+											<option>8PM-9PM</option>
+										</select>
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="email">Email</label>
+										<input type="text" placeholder="Email" class="form-control" id="email" name="email">
+									</div>
+									<div class="form-group col-md-12">
+										<label for="problem">Problem</label>
+										<textarea placeholder="Problem" class="form-control" id="problem" rows="3" name="problem"></textarea>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="status">Status</label>
+										<input type="text" placeholder="Status" class="form-control" id="status" name="status">
+									</div>
+
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+<!-- /Main Content -->
+{% endblock %}

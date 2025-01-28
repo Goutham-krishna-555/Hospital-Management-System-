@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%load static%}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ProClinic-Bootstrap4 Hospital Admin</title>
+	<!-- Fav  Icon Link -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/fav.png' %}">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- themify icons CSS -->
+	<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+	<!-- Animations CSS -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/green.css' %}" id="style_theme">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- morris charts -->
+	<link rel="stylesheet" href="{% static 'charts/css/morris.css' %}">
+	<!-- jvectormap -->
+	<link rel="stylesheet" href="{% static 'css/jquery-jvectormap.css' %}">
+
+	<script src="{% static 'js/modernizr.min.js' %}"></script>
+</head>
+
+<body>
+
+	<!-- Pre Loader -->
+	<div class="loading">
+		<div class="spinner">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>
+	<!--/Pre Loader -->
+    <!-- Color Changer -->
+	<div class="theme-settings" id="switcher">
+		<span class="theme-click">
+			<span class="ti-settings"></span>
+		</span>
+		<span class="theme-color theme-default theme-active" data-color="green"></span>
+		<span class="theme-color theme-blue" data-color="blue"></span>
+		<span class="theme-color theme-red" data-color="red"></span>
+		<span class="theme-color theme-violet" data-color="violet"></span>
+		<span class="theme-color theme-yellow" data-color="yellow"></span>
+	</div>
+	<!-- /Color Changer -->
+	<div class="wrapper"  >
+		<!-- Page Content -->
+		<div id="content">
+			<!-- Top Navigation -->
+			<div class="container top-brand " >
+				<nav class="navbar navbar-default" style="border-radius: 15px; overflow: hidden;">
+					<div class="navbar-header">
+						<div class="sidebar-header"> <a href="{% url 'home' %}"><img src="{%static 'images/logo-dark.png'%}" class="logo" alt="logo"></a>
+						</div>
+					</div>
+					<ul class="nav justify-content-end">
+						<li class="nav-item">
+							<a class="nav-link">
+								<span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							 aria-expanded="false">
+								<span class="ti-user"></span>
+							</a>
+							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
+								<h5>Goutham Krishna</h5>
+							</div>
+						</li>
+					</ul>
+
+				</nav>
+			</div>
+			<!-- /Top Navigation -->
+            			<!-- Menu -->
+			<div class="container menu-nav">
+				<nav class="navbar navbar-expand-lg proclinic-bg text-white">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+						<span class="ti-menu text-white"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+						<ul class="navbar-nav mr-auto justify-content-evenly w-100" >
+							<li class="nav-item justify-content-evenly w-100" >
+								<a class="nav-link"  href="{% url 'home' %}" role="button" aria-haspopup="true"
+								 aria-expanded="false"><span class="ti-home"></span> Dashboard</a>
+							<li class="nav-item dropdown justify-content-evenly w-100">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								 aria-expanded="false"><span class="ti-wheelchair"></span> Patients</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{% url 'add_patient' %}">Add Patient</a>
+									<a class="dropdown-item" href="{% url 'view_patients'%}">All Patients</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown justify-content-evenly w-100">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								 aria-expanded="false"><span class="ti-user"></span> Doctors</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{% url 'add_doctor' %}">Add Doctor</a>
+									<a class="dropdown-item" href="{% url 'view_doctors' %}">View Doctors</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown justify-content-evenly w-100">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								 aria-expanded="false"><span class="ti-pencil-alt"></span> Appointments</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{% url 'add_appointment'  %}">Add Appointment</a>
+									<a class="dropdown-item" href="{% url 'view_appointments' %}">All Appointments</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown justify-content-evenly w-100">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								 aria-expanded="false"><span class="ti-money"></span> Billing</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{%url 'add_payment' %}">Add Payment</a>
+									<a class="dropdown-item" href="{%url 'view_payment'%}">Generate Billing</a>
+								</div>
+							</li>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- /Menu -->
+{% block content %}
+
+           {% endblock %}
+		</div>
+		<!-- /Page Content -->
+	</div>
+	<!-- Back to Top -->
+	<a id="back-to-top" href="#" class="back-to-top">
+		<span class="ti-angle-up"></span>
+	</a>
+<!-- /Back to Top -->
+	<!-- Jquery Library-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<!-- Popper Library-->
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<!-- Bootstrap Library-->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- morris charts -->
+	<script src="{% static 'charts/js/raphael-min.js' %}"></script>
+	<script src="{% static 'charts/js/morris.min.js' %}"></script>
+	<script src="{% static 'js/custom-morris.js' %}"></script>
+
+	<!-- Custom Script-->
+	<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-0">
+    <div class="row breadcrumb-bar">
+        </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow">
+
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <h3 class="widget-title">Doctors List</h3>
+                        </div>
+                        <form method="GET" class="form-inline mb-4"style="padding:10px;" action="">
+                        <input type="text" name="search" class="form-control mr-2" placeholder="Search by Doctor Name" value="{{ request.GET.search }}">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <div class="col-md-4">
+                            <a href="{% url 'add_doctor' %}" class="btn btn-success btn-sm float-right mb-2 ml-5">
+                                <span class="ti-plus"></span> Add Doctor
+                            </a>
+                        </div>
+                    </div>
+
+                    <table id="tableId" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Doctor ID</th>
+                                <th>Doctor Name</th>
+                                <th>Experience (in Years)</th>
+                                <th>Phone</th>
+                                <th>Specialization</th>
+                                <th>Availability</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doctor in doctors %}
+                            <tr>
+                                <td>{{ doctor.id }}</td>
+                                <td>{{ doctor.doctor_name }}</td>  <td>{{ doctor.experience }}</td>  <td>{{ doctor.phone }}</td>  <td>{{ doctor.specialization }}</td>  <td>
+                                   <span class="badge"
+      style="background-color: {% if doctor.availability == 'available' or doctor.availability == 'Available' %}green{% else %}red{% endif %}; color: white;font-size:12px;">
+    {{ doctor.availability }}
+</span>
+
+
+                               <td class="text-center">
+    <div class="d-flex justify-content-center align-items-center">
+        <a href="{% url 'edit_doctors' doctor.id %}" class="btn btn-primary btn-sm mr-2">
+            <span class="ti-pencil-alt"></span> Edit
+        </a>
+        <form method="POST" action="{% url 'delete_doctor' doctor.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">
+                <span class="ti-trash"></span> DELETE
+            </button>
+        </form>
+    </div>
+</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+ <nav aria-label="Page navigation example">
+   <ul class="pagination justify-content-center export-pagination">
+      <li class="page-item">
+         <a class="page-link" href="{% url 'export_doctors_csv' %}?search={{ request.GET.search }}">
+            <span class="ti-download"></span> CSV
+         </a>
+      </li>
+      <li class="page-item">
+         <a class="page-link" href="{% url 'export_doctors_pdf' %}?search={{ request.GET.search }}">
+            <span class="ti-file"></span> PDF
+         </a>
+      </li>
+   </ul>
+</nav>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

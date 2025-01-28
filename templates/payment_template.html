@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClinic Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .invoice {
+            width: 500px;
+            margin: 10px auto;
+            padding: 15px;
+            border: 1px solid #000;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .invoice-header .company-info {
+            text-align: right;
+        }
+
+        .invoice-header .company-info h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .invoice-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .invoice-details table th,
+        .invoice-details table td {
+            padding: 5px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            padding: 5px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+
+        .invoice-table th {
+            background-color: #f2f2f2;
+        }
+
+        .invoice-total {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .invoice-total .total-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .invoice-total .total-amount {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="invoice-header">
+            <div class="company-info">
+                <h2>ProClinic</h2>
+                <p>C-Wing, Level 2, Eureka Towers, Mindspace, W, Mumbai, Maharashtra 400064</p>
+                <p>info@proclinic.com</p>
+                <p>+91 9487813038</p>
+            </div>
+        </div>
+
+        <div class="invoice-details">
+            <table>
+                <tr>
+                    <th>Patient ID</th>
+                    <td>{{ payment.patient_id }}</td>
+                </tr>
+                <tr>
+                    <th>Patient Name</th>
+                    <td>{{ payment.patient_name }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Room Charge</td>
+                    <td>{{ payment.room_charge }}</td>
+                </tr>
+                <tr>
+                    <td>Doctor Fee</td>
+                    <td>{{ payment.doctor_fee }}</td>
+                </tr>
+                <tr>
+                    <td>Medicine Cost</td>
+                    <td>{{ payment.medicine_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Other Charges</td>
+                    <td>{{ payment.other_charge }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>{{ payment.total }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

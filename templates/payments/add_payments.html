@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Add Payment</h3>
+							<form method = "post" action = "{%url 'add_payment' %}" >
+								{%csrf_token%}
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="patient-id">Patient ID</label>
+										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" name ="patient_id">
+                                    </div>
+                                    <div class="form-group col-md-6">
+										<label for="patient-name">Patient Name</label>
+										<input type="text" class="form-control" placeholder="Patient Name" id="patient-name" name="patient_name">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="doctor-name">Doctor Name</label>
+										<input type="text" placeholder="Doctor Name" class="form-control" id="doctor-name" name="doctor_name">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="adminssion-date">Admission Date</label>
+										<input type="date" placeholder="Adminssion Date" class="form-control" id="adminssion-date" name="admission_date">
+                                    </div>
+                                    <div class="form-group col-md-6">
+										<label for="discharge-date">Discharge Date</label>
+										<input type="date" placeholder="Discharge Date" class="form-control" id="discharge-date" name="discharge_date">
+                                    </div>
+                                    <div class="form-group col-md-12">
+										<h4>Payment(in Rs)</h4>
+                                    </div>
+                                    <div class="form-group col-md-3">
+										<label for="room_charge">Room Charge</label>
+										<input type="text" placeholder="Room Charge" class="form-control" id="room_charge" name = "room_charge">
+                                    </div>
+                                    <div class="form-group col-md-3">
+										<label for="doctor_fee">Doctor Fee</label>
+										<input type="text" placeholder="Doctor fee" class="form-control" id="doctor_fee" name = "doctor_fee">
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+										<label for="medicine_cost">Medicine Cost</label>
+										<input type="text" placeholder="Medicine Cost" class="form-control" id="medicine_cost" name="medicine_cost">
+									</div>
+									<div class="form-group col-md-3">
+										<label for="other_charge">Other Charge</label>
+										<input type="text" placeholder="Other Charge" class="form-control" id="other_charge" name="other_charge">
+									</div>
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+			<!-- /Main Content -->
+{% endblock %}

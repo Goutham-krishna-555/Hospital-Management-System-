@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-0">
+    <div class="row breadcrumb-bar">
+        </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow">
+                    <h3 class="widget-title">Edit Doctor</h3>
+                    <form method="POST" action="{% url 'update_doctor' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="doctor-name">Doctor Name</label>
+                                <input type="text" name="doctor_name" class="form-control" value="{% for i in doctor %}{{i.doctor_name}}{% endfor %}"  id="doctor-name">
+                                <input type="text" name = "doctor_id" class="form-control" value="{% for i in doctor %}{{i.id}}{% endfor %}" id="doctor-id" hidden>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="dob">Date Of Birth</label>
+                                <input type="date" name="dob" value="{% for i in doctor %}{{i.date_of_birth}}{% endfor %}" class="form-control" id="dob">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="specialization">Specialization</label>
+                                <input type="text" name="specialization" value="{% for i in doctor %}{{i.specialization}}{% endfor %}" class="form-control" id="specialization">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="experience">Experience</label>
+                                <input type="text" name="experience" value="{% for i in doctor %}{{i.experience}}{% endfor %}" class="form-control" id="experience">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="age">Age</label>
+                                <input type="text" name="age" value="{% for i in doctor %}{{i.age}}{% endfor %}" class="form-control" id="age">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="phone">Phone</label>
+                                <input type="text" name="phone" value="{% for i in doctor %}{{i.phone}}{% endfor %}" class="form-control" id="phone">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" value="{% for i in doctor %}{{i.email}}{% endfor %}" class="form-control" id="Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="{% if doctor.gender == 'Male' %}selected{% endif %}">Male</option>
+                                    <option value="{% if doctor.gender == 'Female' %}selected{% endif %}">Female</option>
+                                    <option value="{% if doctor.gender == 'Other' %}selected{% endif %}">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="availability">Doctor Availability</label>
+                                <input type="text" name="availability" value="{% for i in doctor %}{{i.availability}}{% endfor %}" class="form-control" id="availability">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address">Address</label>
+                                <textarea name="address" class="form-control" id="address" rows="3">{% for i in doctor %}{{i.address}}{% endfor %}</textarea>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

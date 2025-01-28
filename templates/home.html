@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container home">
+    <!-- KPIs -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Total Patients</h3>
+                <h1>{{ total_patients }}</h1>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Total Doctors</h3>
+                <h1>{{ total_doctors }}</h1>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Total Appointments</h3>
+                <h1>{{ total_appointments }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctors List -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Doctors</h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Specialization</th>
+                            <th>Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for doctor in doctors %}
+                        <tr>
+                            <td>{{ doctor.doctor_name }}</td>
+                            <td>{{ doctor.specialization }}</td>
+                            <td>
+                                <span class="badge" style="background-color: {% if doctor.availability == 'available' or doctor.availability == 'Available' %}green{% else %}red{% endif %}; color: white;font-size:13px;">
+                                    {{ doctor.availability }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Appointment Status</h3>
+                <img src="data:image/png;base64,{{ pie_chart_url }}" alt="Pie Chart" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+                <h3 class="widget-title">Appointments by Month</h3>
+                <img src="data:image/png;base64,{{ bar_chart_url }}" alt="Bar Chart" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="widget-area-2 proclinic-box-shadow" style="border-radius: 15px; overflow: hidden;">
+            <h3 class="widget-title">Upcoming Appointments</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Patient Name</th>
+                        <th>Doctor Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in upcoming_appointments %}
+                    <tr>
+                        <td>{{ appointment.id }}</td>
+                        <td>{{ appointment.patient_name }}</td>
+                        <td>{{ appointment.doctor_name }}</td>
+                        <td>{{ appointment.date1 }}</td>
+                        <td>{{ appointment.time_slot }}</td>
+                        <td>
+                            <span class="badge" style="background-color: {% if appointment.status == 'Completed' %}green{% elif appointment.status == 'Pending' %}orange{% else %}red{% endif %}; color: white;font-size:13px;">
+                                {{ appointment.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'send_reminder' appointment.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-sm">Send Reminder</button>
+                            </form>
+
+                            <a href="{% url 'edit_appointment' appointment.id %}" class="btn btn-success btn-sm">
+                                Follow Up
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
