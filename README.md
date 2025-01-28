@@ -122,3 +122,5 @@ Export appointment data to CSV or PDF formats for reporting and archiving purpos
 
 This HMS application offers a robust and user-friendly solution for managing various aspects of a hospital, improving operational efficiency, and enhancing patient care.
 
+
+in the settings.py you have to add ur own email and password
