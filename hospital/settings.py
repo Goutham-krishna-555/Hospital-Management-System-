@@ -146,8 +146,8 @@ EMAIL_PORT = 587               # Port number for TLS (587 for most providers)
 EMAIL_USE_TLS = True           # Enable TLS (secure connection)
 
 # Email authentication
-EMAIL_HOST_USER = 'gouthamkr00@gmail.com'       # Replace with your email address
-EMAIL_HOST_PASSWORD = 'uvgk etep tfvz lfla'      # Replace with your email's app password or SMTP password
+EMAIL_HOST_USER = 'use ur own@gmail.com'       # Replace with your email address
+EMAIL_HOST_PASSWORD = 'use ur own'     # Replace with your email's app password or SMTP password
 
 Q_CLUSTER = {
     'name': 'DjangoQ',
